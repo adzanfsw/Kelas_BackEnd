@@ -14,13 +14,14 @@ func palindrome(input string) bool {
 
 func main() {
 
-	fmt.Printf("Ketikkan sebuah kata: ")
-	var kata string
-	fmt.Scanln(&kata)
+	fmt.Println(palindrome("civic")) // true
 
-	if palindrome(kata) == true {
-		fmt.Println("Kata tersebut adalah palindrome.")
-	} else {
-		fmt.Println("Kata tersebut bukan palindrome.")
-	}
+	fmt.Println(palindrome("katak")) // true
+
+	fmt.Println(palindrome("kasur rusak")) // true
+
+	fmt.Println(palindrome("mistar")) // false
+
+	fmt.Println(palindrome("lion")) // false
+
 }
