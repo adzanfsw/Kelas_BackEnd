@@ -10,15 +10,9 @@ func SimpleEquations(A, B, C int) {
 
 			for z := 1; z <= 10000; z++ {
 
-				if x+y+z == A {
-
-					if x*y*z == B {
-
-						if x*x+y*y+z*z == C {
-							fmt.Println(x, y, z)
-							return
-						}
-					}
+				if x+y+z == A && x*y*z == B && x*x+y*y+z*z == C {
+					fmt.Println(x, y, z)
+					return
 				}
 			}
 		}
