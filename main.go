@@ -9,5 +9,5 @@ func main() {
 
 	config.InitDB()
 	e := route.RouteShoes()
-	e.Logger.Fatal(e.Start(":3000"))
+	e.Start(":3000")
 }
