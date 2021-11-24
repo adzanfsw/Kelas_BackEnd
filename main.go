@@ -8,6 +8,8 @@ import (
 func main() {
 
 	config.InitDB()
+	config.AutoMigrate()
+
 	e := route.RouteShoes()
 	e.Start(":3000")
 }

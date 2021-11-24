@@ -4,25 +4,43 @@ import (
 	"net/http"
 
 	"lari/library/database"
-
-	respShoes "lari/controller/resp"
+	"lari/model/shoes"
 
 	"github.com/labstack/echo/v4"
 )
 
-func AddShoesController(c echo.Context) error {
+func AddShoesController(echoContext echo.Context) error {
 
-	result, err := database.AddShoes()
+	var shoeReq shoes.Shoes
+	echoContext.Bind(&shoeReq)
 
+	result, err := database.AddShoes(shoeReq)
 	if err != nil {
-		return c.JSON(http.StatusInternalServerError, err)
+		return echoContext.JSON(http.StatusInternalServerError, map[string]interface{}{
+			"status":   "err",
+			"messages": err,
+		})
 	}
 
-	return c.JSON(http.StatusOK, map[string]interface{}{
-		"message": "hope all feeling well",
-		"data":    respShoes.FromModelSlice(result),
+	return echoContext.JSON(http.StatusOK, map[string]interface{}{
+		"status": "success",
+		"data":   result,
 	})
 }
+
+// func AddShoesController(c echo.Context) error {
+
+// 	result, err := database.AddShoes()
+
+// 	if err != nil {
+// 		return c.JSON(http.StatusInternalServerError, err)
+// 	}
+
+// 	return c.JSON(http.StatusOK, map[string]interface{}{
+// 		"message": "hope all feeling well",
+// 		"data":    respShoes.FromModelSlice(result),
+// 	})
+// }
 
 // func AddShoesController(c echo.Context) error {
 
