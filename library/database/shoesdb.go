@@ -2,15 +2,13 @@ package database
 
 import (
 	"lari/config"
-	"lari/model/shoes"
+	shoe "lari/model/shoes"
 )
 
-func AddShoes() (interface{}, error) {
-
-	shoes := shoes.Shoes{}
+func AddShoes() (shoes []shoe.Shoes, err error) {
 
 	if err := config.DB.Save(&shoes).Error; err != nil {
-		return nil, err
+		return []shoe.Shoes{}, err
 	}
 
 	return shoes, nil
